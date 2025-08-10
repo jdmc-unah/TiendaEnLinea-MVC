@@ -1,0 +1,39 @@
+﻿ 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 text-center">
+
+        <br/><br/>
+
+        @{
+            if ( (bool)ViewData["Status"] )
+            {
+                <h1 class="text-success">Gracias</h1>
+                <i class="bi bi-check-circle text-success fs-3"></i>
+
+                <h2 class="text-success">Su pago fue realizado con éxito</h2>
+                <h4>ID de Transaccion:  @ViewData["ID_Transaccion"] </h4>
+                <br />
+
+                <a  href="@Url.Action("Index","Tienda")" class="btn btn-primary mb-5">Volver a la tienda</a>
+
+            }else{
+                <h1 class="text-success">Lo sentimos</h1>
+                <i class="bi bi-exclamation-circle text-danger "></i>
+
+                <h2 class="text-success">Su pago no fue realizado</h2>
+
+                <a href="@Url.Action("Index","Tienda")" class="btn btn-primary">Volver a la tienda</a>
+
+            }
+
+        }
+
+    </div>
+
+</div>

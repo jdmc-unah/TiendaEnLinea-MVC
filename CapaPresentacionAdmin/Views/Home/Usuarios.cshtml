@@ -1,0 +1,317 @@
+﻿
+@{
+    ViewData["Title"] = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class = "mt-2" >Usuarios</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Resumen</a></li>
+    <li class="breadcrumb-item active">Usuarios</li>
+</ol>
+
+
+<div class="card">
+  <div  class="card-header">
+      <i class="bi bi-people-fill  me-2"></i>Lista de Usuarios
+  </div>
+  <div class="card-body">
+      <div class="row">
+          <div class = "col-12">
+                <button type="button" class="btn btn-outline-success mb-3" onclick="abrirModal(null)">Crear Nuevo</button>
+          </div>
+
+          <hr />
+
+            <table id="tabla" class="table-responsive table-hover cell-border">
+             <thead>
+                 <tr>
+                    <th>Nombres</th> 
+                     <th>Apellidos</th>   
+                     <th>Correo</th>    
+                     <th>Activo</th>
+                 </tr>
+             </thead>
+             <tbody>
+
+             </tbody>
+            
+        </table>
+
+      </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1"  aria-hidden="true" data-bs-backdrop ="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row  g-2">
+                    <input id="txtid" type="hidden" value="0" />
+                    <div class="col-sm-6">
+                        <label for="txtnombres" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="txtnombres" autocomplete="off">
+                        
+                    </div>
+                    <div class="col-sm-6 ">
+                        <label for="txtapellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="txtapellidos" autocomplete="off">
+                        
+                    </div>
+              
+                    <div class="col-sm-6">
+                        <label for="txtcorreo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="txtcorreo" placeholder="empleado@ejemplo.com" autocomplete="off">
+                        
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="cboactivo" class="form-label">Estado</label>
+                        <select id="cboactivo" class="form-select">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                
+                    
+                </div>
+
+                <div class="row mt-4 ">
+                    <div>
+                        <div id="mensajeError" class="alert alert-danger " role="alert">
+                            A simple success alert—check it out!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+                </div>
+
+            </div>                                                                                                                                                                                                          
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+
+        
+
+        var tabladata;
+        var filaSeleccionada;
+
+        //--------------------LISTAR USUARIOS----------------------------------------------------------------------
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarUsuarios", "Home")',
+            type: "GET",
+            datatype: "json",
+            contentType: "application/json; charset-utf-8",
+            success: function(data){
+                console.log(data)
+            }
+        })
+
+        tabladata = $("#tabla").DataTable({
+            responsive: true,
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            ordering: true,
+            "ajax":{
+                url: '@Url.Action("ListarUsuarios", "Home")',
+                type: "GET",
+                datatype: "json"
+            },
+            "columns": [
+                { "data": "nombres" },
+                {"data": "apellidos" },
+                {"data": "correo"},
+                {"data": "activo", "render": function (valor) {
+                        if (valor) {
+                            return '<span class="ps-3 pe-3 badge text-bg-success">Si</span>'
+                        } else {
+                            return '<span class="ps-3 pe-3 badge text-bg-danger">No</span>'
+                        }
+                    }
+                },
+                {
+                    "defaultContent": '<button type="button" id ="btn-editar" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>' +
+                        '<button type="button"  id ="btn-eliminar" class="btn btn-danger btn-sm ms-2" ><i class="bi bi-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false
+                    
+                }
+ 
+            ],
+            "language":{
+                "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/es-ES.json"
+            }
+        
+        });
+
+        //---------------------ABRIR MODAL---------------------------------------------------------------------
+       
+        function abrirModal(json){
+
+            $("#txtid").val(0);
+            $("#txtnombres").val("");
+            $("#txtapellidos").val("");
+            $("#txtcorreo").val("");
+            $("#cboactivo").val(1);
+
+            $("#mensajeError").hide();
+
+            if (json != null) {
+
+                $("#txtid").val(json.iD_Usuario);
+                $("#txtnombres").val(json.nombres);
+                $("#txtapellidos").val(json.apellidos);
+                $("#txtcorreo").val(json.correo);
+                $("#cboactivo").val(json.activo == true ? 1 : 0);
+
+            }      
+            
+            $("#FormModal").modal("show")
+        }
+
+        //---------------------------ACCION BTN EDITAR / JALAR DATOS DE TABLA PARA ABRIR MODAL---------------------------------------------------------------
+
+
+        //Dar instruccion cuando se haga click en el btn-editar que esta dentro de la tabla y dentro del tbody de esta tabla
+        $("#tabla tbody").on("click", "#btn-editar", function () {
+
+            //Guardar en una variable la fila mas cercana a this que es la tabla , tr es table row
+            filaSeleccionada = $(this).closest("tr");
+
+            //Imprimir en la consola los datos en la fila seleccionada
+            var data = tabladata.row(filaSeleccionada).data();
+
+            abrirModal(data);
+
+        })
+
+
+        //---------------------------ACCION BTN ELIMINAR---------------------------------------------------------------
+
+
+        $("#tabla tbody").on("click", "#btn-eliminar", function () {
+
+            var usuarioSeleccionado = $(this).closest("tr");
+
+            var data = tabladata.row(usuarioSeleccionado).data();
+
+
+            // var id = { 
+            //     iD_Usuario : data.iD_Usuario 
+            // }
+
+            swal({
+                title: "Esta seguro?",
+                text: "Desea eliminar el usuario?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            },
+            function () {
+
+                jQuery.ajax({
+                    url: '@Url.Action("EliminarUsuario", "Home")',
+                    type: "POST",
+                    data: { id: data.iD_Usuario },
+                    //datatype: "json",
+                    success: function (data) {
+                        if(data.resultado){
+                            tabladata.row(usuarioSeleccionado).remove().draw();
+                        }else{
+                            swal("No se pudo eliminar", data.mensaje, "error");   
+                        }
+                    }
+                })
+            });
+            
+        })
+
+
+
+        //----------------------------GUARDAR EMPLEADO--------------------------------------------------------------
+
+        function Guardar() {
+            var Usuario = {
+                activo: $("#cboactivo").val() == 1 ? true : false,
+                apellidos: $("#txtapellidos").val(),
+                correo: $("#txtcorreo").val(),
+                iD_Usuario: $("#txtid").val(),
+                nombres: $("#txtnombres").val()
+            }
+
+            jQuery.ajax({
+                url: '@Url.Action("GuardarUsuario", "Home")',
+                type: "POST",
+                data:  Usuario,
+                datatype: "json",
+                success: function (data) {
+                                  
+                    if (Usuario.iD_Usuario == 0) {
+                       
+                        if(data.resultado != 0){
+                            Usuario.iD_Usuario = data.resultado;
+                            tabladata.row.add(Usuario).draw(false);
+                            $("#FormModal").modal("hide")
+
+                        }else{
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                            
+                        }
+
+                    } else {
+
+                        if (data.resultado) {
+                            tabladata.row(filaSeleccionada).data(Usuario).draw(false);
+                            filaSelccionada = null;
+                            $("#FormModal").modal("hide")
+
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+
+                    }
+                    $(".modal-body").LoadingOverlay("hide");
+                },
+                error: function (error) {
+                    $("#mensajeError").text("ERROR 19122024");
+                    $("#mensajeError").show();
+                    $(".modal-body").LoadingOverlay("hide");
+
+                },
+                beforeSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        background: "rgba(165, 190, 100, 0.5)",
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size: 14
+                    });
+
+                }
+            })
+
+        }
+
+    </script>
+}

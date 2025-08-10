@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CapaPresentacionTienda</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CapaPresentacionTienda.styles.css" asp-append-version="true" />
+    <link href="~/css/paquetes/sweetalert.css" rel="stylesheet" />
+    <link href="~/css/paquetes/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid px-4 ">
+                <a class="navbar-brand" href="#!">Tienda 1</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Index","Tienda")">Inicio</a></li>
+                        @* <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            </ul>
+                        </li> *@
+                    </ul>
+                    <form class="d-flex">
+
+                        @if (User.Identity.Name == null)
+                        {
+                            <a class="btn btn-outline-dark" aria-current="page" href="@Url.Action("Index","Acceso")"><i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesion</a>
+                        }else{
+
+                            <a class="btn btn-outline-dark" href="@Url.Action("Carrito","Tienda")">
+                                <i class="bi bi-cart-check me-1"></i>
+                                Cart
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">0</span>
+                            </a>
+                            <ul class="navbar-nav  ms-auto me-0 me-md-3 my-2 my-md-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi bi-person-fill" viewBox="0 0 16 16">
+                                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                        </svg>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#!"><b>@User.Identity.Name</b></a></li>
+                                        <li><a class="dropdown-item" href="@Url.Action("MisCompras","Tienda")"><b>Mis Compras</b></a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Acceso")">Cerrar Sesion</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    @RenderBody()
+   
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/paquetes_js/loadingoverlay.min.js"></script>
+    <script src="~/js/paquetes_js/sweetalert.min.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+
+        $(document).ready(function () {
+            MostrarCantidadCarrito()
+        })
+        function MostrarCantidadCarrito(){
+            if ($("#cantidadcarrito").length > 0){
+                jQuery.ajax({
+                    url: "@Url.Action("CantidadEnCarrito", "Tienda")",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        $("#cantidadcarrito").text(data.cantidad)
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+@* 
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CapaPresentacionTienda</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+ *@

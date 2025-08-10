@@ -1,0 +1,83 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CapaPresentacionTienda
+build_property.RootNamespace = CapaPresentacionTienda
+build_property.ProjectDir = C:\Users\Daniel\Documents\Programacion C#\Web con MVC\Tienda1\CapaPresentacionTienda\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Daniel\Documents\Programacion C#\Web con MVC\Tienda1\CapaPresentacionTienda
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Acceso/CambiarClave.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXENhbWJpYXJDbGF2ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Acceso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Acceso/Reestablecer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZXN0YWJsZWNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Acceso/Registrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZ2lzdHJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Tienda/Carrito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXENhcnJpdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Tienda/DetalleProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXERldGFsbGVQcm9kdWN0by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Tienda/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Tienda/MisCompras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXE1pc0NvbXByYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Tienda/PagoEfectuado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXFBhZ29FZmVjdHVhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel/Documents/Programacion C\#/Web con MVC/Tienda1/CapaPresentacionTienda/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-7b3o1l8w0w

@@ -34,3 +34,5 @@ Este proyecto consiste en una aplicación web desarrollada con **ASP.NET MVC en 
 - Bootstrap 5 (interfaz responsiva)
 - Razor Views
 - LINQ para consultas dinámicas
+
+NOTA: Debido a inconvenientes con la base de datos en linea, los datos actualmente son inaccesibles

@@ -6,3 +6,31 @@ Este proyecto consiste en una aplicación web desarrollada con **ASP.NET MVC en 
 - **Tienda Pública**: Interfaz amigable para los usuarios finales donde pueden explorar productos, registrarse, iniciar sesión y realizar compras.
 
 ## 🧱 Estructura del Proyecto
+
+
+### 🔐 CapaPresentacionAdmin (Dashboard)
+
+- Gestión de productos (crear, editar, eliminar, listar)
+- Administración de categorías
+- Control de usuarios y roles
+- Visualización de pedidos y estadísticas
+- Autenticación para administradores
+
+### 🛍️ CapaPresentacionTienda (Frontend público)
+
+- Catálogo de productos dinámico
+- Filtro por categorías
+- Inicio de sesión de usuarios
+- Carrito de compras
+- Confirmación de pedidos
+- Simulacion de compra con Paypal API
+
+## 🛠️ Tecnologías utilizadas
+
+- ASP.NET MVC 5
+- C# .NET Framework 
+- Entity Framework 
+- SQL Server (base de datos relacional)
+- Bootstrap 5 (interfaz responsiva)
+- Razor Views
+- LINQ para consultas dinámicas
